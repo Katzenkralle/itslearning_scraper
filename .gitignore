@@ -1,0 +1,7 @@
+linux
+__pycache__
+migration
+node_modules
+*.sqlite3
+*.pyc
+ll_web/api/scraperOut

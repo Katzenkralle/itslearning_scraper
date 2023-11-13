@@ -1,0 +1,38 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+  /* Custom Tailwind */
+.inputElement {
+    @apply text-text bg-inputBg p-1 rounded-lg
+  }
+
+.infoHl {
+@apply text-xl font-bold 
+}
+
+.mainHl {
+@apply text-3xl font-bold mt-2
+}
+
+.maxHl {
+@apply text-6xl font-bold
+}
+
+.link {
+    @apply text-link hover:text-linkHover
+}
+
+.grid div p,h2,a {
+  @apply my-auto
+}
+
+.grid div a {
+  @apply mx-auto
+}
+
+.grid img {
+  @apply w-[30px] self-center p-1
+
+}
