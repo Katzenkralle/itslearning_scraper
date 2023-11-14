@@ -1,0 +1,7 @@
+node_modules
+__pycache__
+migrations
+its_learning_scraper/data
+linux
+.vscode
+.git

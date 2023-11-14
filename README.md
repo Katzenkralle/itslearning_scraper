@@ -12,7 +12,7 @@
 
 ### How to install
 - Clone the repository on your local machine.
-- Run docker build (docerfile included in the repository)
+- Run docker build (dockerfile included in the repository)
 - Start the container a port forward to 80 in the container.
 - When run in production following environmental variables should be set: ALLOWED_HOSTS (IPv4 separated by ;), SECRET_KEY (str), RUN_IN_DEBUG ("1"/"0"), CSRF_TRUSTED_ORIGINS (IPv4 separated by ;)
 
