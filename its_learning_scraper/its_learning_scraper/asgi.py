@@ -1,5 +1,5 @@
 """
-ASGI config for ll_web project.
+ASGI config for its_learning_scraper project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'll_web.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'its_learning_scraper.settings')
 
 application = get_asgi_application()

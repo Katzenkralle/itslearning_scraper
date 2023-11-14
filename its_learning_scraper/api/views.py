@@ -11,15 +11,24 @@ import json
 from .scraper import Scraper
 from .search import search_data
 
-
+def load_data_to_session(session):
+        try: #Write to function
+            session['data'] = Scraper(usr = session['user'], passwd = session['passwd']).get_data()
+            if session['data'] == 'login_err':
+                raise Exception 
+            session['auth'] = True  #Session auth currently unused
+            return True
+        except Exception:
+            #Catch all exceptions becaue it must accound for errors during scraping
+            session['auth'] = False
+            return False
 
 class UserView(APIView):
     def get(self, request):
         session = request.session
-        if session["data"] == []:
-            session["data"] = Scraper(usr = session['user'], passwd = session['passwd']).get_data()
-        if  session["data"] == "login_err":
-            return redirect("login")
+        if session.get("data", []) == []:
+            if not load_data_to_session(session):
+                return HttpResponse(status=status.HTTP_403_FORBIDDEN)
 
         top_level, bottom_level, entry, search_results = search_data(session["data"], "") # search results handeled in frontend
         return JsonResponse({"bottomLvl": bottom_level, "topLvl": top_level, "entrys": entry, "allData": session["data"]}, safe=False)
@@ -42,15 +51,9 @@ def login(request):
     session.clear()
     session['user'] = request.POST.get('user')
     session['passwd'] = request.POST.get('passwd')
-    try:
-        session['data'] = Scraper(usr = session['user'], passwd = session['passwd']).get_data()
-        if session['data'] == 'login_err':
-            raise Exception 
-    except Exception:
-        #Catch all exceptions becaue it must accound for errors during scraping
-        session['auth'] = False
-        return HttpResponse(status=status.HTTP_403_FORBIDDEN)
 
+    
+    if not load_data_to_session(session):
+        return HttpResponse(status=status.HTTP_403_FORBIDDEN)
     else:
-        session['auth'] = True
         return HttpResponse(status=status.HTTP_202_ACCEPTED)

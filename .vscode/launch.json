@@ -9,14 +9,18 @@
         "name": "Run run dev",
         "request": "launch",
         "type": "node-terminal",
-        "cwd": "${workspaceFolder}/ll_web/frontend",
+        "cwd": "${workspaceFolder}/its_learning_scraper/frontend",
     },
         {
             "name": "Python: manage.py",
             "type": "python",
             "request": "launch",
-            "program": "ll_web/manage.py",
+            "program": "its_learning_scraper/manage.py",
             "args": ["runserver"],
+            "env": {
+                "DEBUG": "True",
+                "SECRET_KEY": "DONTUSETHISONE"
+            },
             "console": "integratedTerminal",
             "justMyCode": true
         }
